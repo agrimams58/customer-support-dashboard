@@ -18,7 +18,7 @@ End-to-end MIS reporting solution analyzing 8,469 customer support tickets to su
 
 ![Channel Performance](outputs/screenshots/03_channel_type_performance.png)
 
-📄 **[Download Executive Summary PDF](outputs/executive_summary.pdf)**
+📄 **[Download Executive Summary PDF](https://github.com/agrimams58/customer-support-dashboard/raw/main/outputs/executive_summary.pdf)**
 
 ---
 
