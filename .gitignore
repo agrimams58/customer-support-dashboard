@@ -9,8 +9,8 @@ __pycache__/
 venv/
 .env
 
-# Power BI
-*.pbix
+
+
 
 # OS
 .DS_Store
