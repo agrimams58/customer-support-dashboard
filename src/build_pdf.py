@@ -116,27 +116,25 @@ story.append(Spacer(1, 0.4*cm))
 story.append(Paragraph('★ Key Findings', section_style))
 
 findings = [
-    ('SLA compliance below benchmark.',
-     'Overall SLA compliance is 82.6%, 2.4 percentage points below the '
-     '85% industry standard. All 481 SLA breaches are concentrated in '
-     'Critical-priority tickets (66.3% breach rate for Critical vs. 0% '
-     'for High, Medium, and Low).'),
+    ('SLA compliance is below the typical 85% benchmark.',
+     'Overall compliance is 82.6%. Notably, all 481 SLA breaches come from '
+     'Critical-priority tickets (66.3% breach rate for Critical vs. 0% for '
+     'High, Medium, and Low), suggesting the issue is concentrated in one '
+     'priority tier rather than distributed across the board.'),
 
-    ('Priority queues are not being respected.',
-     'Average resolution time is essentially flat across all four priority '
-     'levels (~7.5 hours each). In a healthy support operation, Critical '
-     'tickets should resolve 2–3× faster than Low. The flat distribution '
-     'indicates agents are processing tickets in arrival order rather than '
-     'priority order.'),
+    ('Resolution times do not appear to differ by priority.',
+     'Average resolution time is roughly 7.5 hours across all four priority '
+     'levels. In principle, Critical tickets should resolve faster than Low, '
+     'so the near-uniform distribution is worth further investigation — it '
+     'may indicate that priority labels are not influencing queue ordering.'),
 
-    ('Channel performance varies meaningfully.',
-     'Chat delivers the strongest combination of speed (7.5h) and CSAT (3.15). '
-     'Social Media has the lowest CSAT (2.76 for Technical Issues) despite '
-     'comparable resolution times — public visibility likely amplifies '
-     'frustration. Email · Product Inquiry shows the worst SLA compliance '
-     '(75.4%) and warrants immediate review.'),
+    ('Channel performance shows meaningful variation.',
+     'Chat leads on both speed (7.5h) and satisfaction (CSAT 3.15). '
+     'Social Media trails on CSAT (2.76 for Technical Issues) despite '
+     'comparable resolution times, possibly because public-facing tickets '
+     'feel more urgent to customers. Email · Product Inquiry shows the '
+     'weakest SLA compliance at 75.4%.'),
 ]
-
 for headline, detail in findings:
     story.append(Paragraph(
         f'<b>{headline}</b> {detail}', body_style
@@ -147,21 +145,26 @@ for headline, detail in findings:
 story.append(Paragraph('Recommendations', section_style))
 
 recommendations = [
-    'Audit Critical-priority triage workflow. Likely root cause: manual '
-    'assignment latency. Implement SLA-first routing rules with a dedicated '
-    'Critical queue.',
+    'Investigate whether priority-based routing is functioning as intended. '
+    'Average resolution time is nearly identical across all priority levels, '
+    'which suggests tickets may be processed in arrival order rather than '
+    'priority order. This would warrant a review of the triage workflow.',
 
-    'Reinforce priority-based handling with agents. Update queue dashboards '
-    'to surface Critical tickets first; consider time-on-ticket alerts when '
-    'agents spend >2h on a Low while Critical sits unworked.',
+    'Examine the Email · Product Inquiry segment more closely. It shows the '
+    'lowest SLA compliance (75.4%) in the dataset. A deeper look at the root '
+    'cause — whether it\'s product-knowledge gaps, escalation delays, or '
+    'high query complexity — could help identify the drag factor.',
 
-    'Investigate Email · Product Inquiry workflow. The 75.4% compliance '
-    'and below-average CSAT (2.94) suggest Tier 1 escalation friction or '
-    'product-spec lookup delays.',
+    'Study what makes Chat the top-performing channel. With 7.5h average '
+    'resolution and 3.15 CSAT (highest of any channel), Chat sets the '
+    'benchmark. Understanding whether this is driven by ticket type, agent '
+    'specialization, or response format may yield lessons transferable to '
+    'Email and Social Media.',
 
-    'Replicate Chat success patterns. Chat\'s strong CSAT (3.15) likely '
-    'reflects faster acknowledgment and shorter back-and-forth. Apply '
-    'similar response templates to Email and Social Media channels.',
+    'Consider whether CSAT capture can be extended to Open/Pending tickets. '
+    'Currently, satisfaction data is only available for the 32.7% of tickets '
+    'that closed. Adding a mid-ticket pulse survey could provide earlier '
+    'feedback for tickets at risk of breaching SLA.',
 ]
 
 for i, rec in enumerate(recommendations, 1):
